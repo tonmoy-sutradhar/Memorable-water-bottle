@@ -1,4 +1,4 @@
-const Bottle = ({ bottle }) => {
+const Bottle = ({ bottle, handlePurchase }) => {
   // console.log(bottle);
   const { name, img, price } = bottle;
   return (
@@ -14,7 +14,7 @@ const Bottle = ({ bottle }) => {
       <h2>Bottle Name: {name}</h2>
       <img style={{ width: "380px", borderRadius: "15px" }} src={img} alt="" />
       <p>Price: ${price}</p>
-      <button>Purchase</button>
+      <button onClick={() => handlePurchase(bottle)}>Purchase</button>
     </div>
   );
 };

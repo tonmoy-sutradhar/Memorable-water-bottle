@@ -4,12 +4,19 @@ import Bottle from "./bottle";
 
 const Bottles = () => {
   const [bottles, setBottles] = useState([]);
+  const [purchase, setPurchase] = useState([]);
   useEffect(() => {
     fetch("bottles.json")
       .then((res) => res.json())
       .then((data) => setBottles(data));
     // .then((data) => console.log(data));
   }, []);
+
+  const handlePurchase = (bottle) => {
+    console.log("Purchase added going on.");
+    const newPurchase = [...purchase, bottle];
+    setPurchase(newPurchase);
+  };
 
   return (
     <div
@@ -20,8 +27,13 @@ const Bottles = () => {
         }
       }
     >
+      <h2>Purchase: {purchase.length}</h2>
       {bottles.map((bottle) => (
-        <Bottle key={bottle.id} bottle={bottle}></Bottle>
+        <Bottle
+          key={bottle.id}
+          bottle={bottle}
+          handlePurchase={handlePurchase}
+        ></Bottle>
       ))}
     </div>
   );
